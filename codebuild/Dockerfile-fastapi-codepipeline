@@ -1,0 +1,12 @@
+FROM public.ecr.aws/docker/library/python:3.9.15-bullseye
+
+# 依存Pythonライブラリ一覧コピー
+COPY ./docker-images-fastapi/requirements.txt ./
+# 依存Pythonライブラリインストール
+RUN pip install --no-cache-dir -r requirements.txt
+# appをコピーする
+COPY ./docker-images-fastapi/app /app
+# 80番ポートを開く
+EXPOSE 80
+# FastAPIを実行
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]

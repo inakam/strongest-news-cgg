@@ -1,0 +1,2 @@
+INSERT INTO comments (name,article_id,detail,created_at,updated_at) VALUES ("田中太郎", 0, "感動しました！", "2020-07-21 20:00:00", "2020-07-21 20:00:00");
+INSERT INTO comments (name,article_id,detail,created_at,updated_at) VALUES ("田中正志", 1, "いいニュースですね！", "2022-02-28 21:00:00", "2022-02-28 21:00:00");

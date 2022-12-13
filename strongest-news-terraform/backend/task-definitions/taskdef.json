@@ -1,0 +1,57 @@
+[
+  {
+    "name": "fast-api",
+    "image": "${aws_account_id}.dkr.ecr.${region}.amazonaws.com/${ecr_name_fastapi}:latest",
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80,
+        "protocol": "tcp"
+      }
+    ],
+    "essential": true,
+    "environment": [
+      {
+        "name": "TZ",
+        "value": "Japan"
+      },
+      {
+        "name": "DATABASE_USER",
+        "value": "${database_user}"
+      },
+      {
+        "name": "DATABASE_PASSWORD",
+        "value": "${database_password}"
+      },
+      {
+        "name": "DATABASE_HOST",
+        "value": "${database_host}"
+      },
+      {
+        "name": "DATABASE_DB_NAME",
+        "value": "${database_db_name}"
+      }
+    ],
+    "privileged": false,
+    "readonlyRootFilesystem": false,
+    "pseudoTerminal": false,
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "ecs-fastapi-${name}",
+        "awslogs-region": "${region}",
+        "awslogs-stream-prefix": "ecs-fastapi-${name}"
+      }
+    },
+    "healthCheck": {
+      "command": [
+        "CMD-SHELL",
+        "wget -q -O - http://localhost/|| exit 1"
+      ],
+      "interval": 5,
+      "retries": 3,
+      "startPeriod": 60,
+      "timeout": 5
+    }
+  }
+]

@@ -1,0 +1,15 @@
+# テスト用のコンテナ定義
+# pull official base image
+FROM python:3.10
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# 依存Pythonライブラリ一覧コピー
+COPY requirements.txt ./
+# 依存Pythonライブラリインストール
+RUN pip install --no-cache-dir -r requirements.txt
+
+# テストのためにpytestをインストール
+RUN pip install pytest requests
