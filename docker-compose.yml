@@ -25,7 +25,7 @@ services:
       - 80:3000
     environment:
       # バックエンドAPIへのエンドポイント
-      REACT_APP_BACKEND_API_ENDPOINT: http://localhost:3032
+      REACT_APP_BACKEND_API_ENDPOINT: ""
     stdin_open: true
   mysql-db:
     image: mysql:8.0
