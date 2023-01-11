@@ -10,3 +10,10 @@ data "aws_region" "current" {}
 output "codecommit_address" {
   value = "codecommit::${data.aws_region.current.name}://cgg@${aws_codecommit_repository.cgg_framework.repository_name}"
 }
+
+// App Runnerのために以下のコメントアウトを外す
+/*
+output "frontend_apprunner_url" {
+  value = module.frontend_apprunner.apprunner_url
+}
+*/

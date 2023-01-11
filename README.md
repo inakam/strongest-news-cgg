@@ -66,6 +66,12 @@ docker-compose up
   <img src="https://user-images.githubusercontent.com/23179726/206988069-e8a94ccf-ffec-47c6-91df-eea3687758f5.png" alt="AWS環境" width="800px">
 </p>
 
+## 🌩 AWS 環境（フロント App Runner 版）
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/23179726/210035115-58acf5b0-2446-4460-810b-1406efcaf405.png" alt="AWS環境(フロントApp Runner版)" width="800px">
+</p>
+
 # 🤗 AWS EC2 上に立ち上げる
 
 1. AWS で EC2 のインスタンス（Amazon Linux 2）を立ち上げる
@@ -101,3 +107,17 @@ docker-compose up
    1. `git remote codecommit [ここをcodecommit_addressにする]`を実行し、codecommit へプッシュできるようにする
    1. `git checkout main && git push codecommit HEAD`
 1. CodePipeline のパイプラインを実行
+1. デプロイ後に表示される`aws_alb_frontend_url`にアクセスする
+
+# 🎢 App Runner によるデプロイ
+
+- ECS デプロイが行われている前提で行います
+
+1. `main.tf`と`output.tf`でコメントアウトされている部分のコメントアウトを外す
+1. `terraform init`で初期化
+1. `terraform apply`で環境を構築する
+   - ECS デプロイ時にビルドされた ECR イメージを流用
+1. デプロイ後に表示される`frontend_apprunner_url`にアクセスする
+1. mixed Content となりエラーになるため、ブラウザの「安全でないコンテンツ」を許可に変更する
+   - バックエンド API へ http で接続しているため
+1. 実際に表示される

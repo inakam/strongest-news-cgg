@@ -23,3 +23,13 @@ module "backend" {
   aws_rds_cluster_mysql                   = aws_rds_cluster.mysql
   aws_codecommit_repository_cgg_framework = aws_codecommit_repository.cgg_framework
 }
+
+// App Runnerのために以下のコメントアウトを外す
+/*
+module "frontend_apprunner" {
+  source = "./frontend_apprunner"
+
+  name               = "${local.name}-frontend-apprunner"
+  ecr_repository_url = module.frontend.ecr_repository_url
+}
+*/
